@@ -14,5 +14,7 @@ steps:
 
 - task: GitHubRelease@0
   inputs:
-    gitHubConnection: 'deployment key'
-  
+    gitHubConnection: 'releases token'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
