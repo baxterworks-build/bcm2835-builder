@@ -17,6 +17,7 @@ steps:
     gitHubConnection: 'releases token'
     repositoryName: '$(Build.Repository.Name)'
     action: 'create'
+    tagSource: 'manual'
     tag: 'v-pipeline-$(Build.SourceVersion)'
     target: '$(Build.SourceVersion)'
     assets: 'bcm2835*/libbcm2835.so.gz'
