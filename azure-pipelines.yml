@@ -5,8 +5,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: 'sudo apt update; sudo apt -y install gcc-arm-linux-gnueabi'
 - script: 'curl http://www.airspayce.com/mikem/bcm2835/bcm2835-1.58.tar.gz | tar zxf -'
   displayName: 'download and extract bcm2835'
   
-- script: 'cd bcm2835* && ./configure --prefix=/output && make'
-  displayName: 'configure and make'
+- script: 'cd bcm2835* && arm-linux-gnueabi-gcc -shared -o libbcm2835.so -fPIC src/bcm2835.c'
+  displayName: 'make shared library'
+
+  
