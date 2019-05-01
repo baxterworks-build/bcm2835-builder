@@ -9,11 +9,9 @@ steps:
 - script: 'curl http://www.airspayce.com/mikem/bcm2835/bcm2835-1.58.tar.gz | tar zxf -'
   displayName: 'download and extract bcm2835'
   
-- script: 'cd bcm2835* && arm-linux-gnueabi-gcc -shared -o libbcm2835.so -fPIC src/bcm2835.c'
-  displayName: 'make shared library'
+- script: 'cd bcm2835* && arm-linux-gnueabi-gcc -shared -o libbcm2835.so -fPIC src/bcm2835.c && gzip -3 libbcm2835.so'
+  displayName: 'make and compress shared library'
 
-- script: 'gzip -3 libbcm2835.so'
-  displayName: 'make shared library'
 - task: GitHubRelease@0
   inputs:
     gitHubConnection: 'releases token'
@@ -21,4 +19,4 @@ steps:
     action: 'create'
     tag: 'v-pipeline-$(Build.SourceVersion)'
     target: '$(Build.SourceVersion)'
-    assets: 'libbcm2835.so.gz'
+    assets: 'bcm2835*/libbcm2835.so.gz'
