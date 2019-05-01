@@ -9,4 +9,4 @@ steps:
   displayName: 'download and extract bcm2835'
   
 - script: 'cd bcm2835* && ./configure --prefix=/output && make'
-  displayName 'configure and make'
+  displayName: 'configure and make'
