@@ -12,4 +12,7 @@ steps:
 - script: 'cd bcm2835* && arm-linux-gnueabi-gcc -shared -o libbcm2835.so -fPIC src/bcm2835.c'
   displayName: 'make shared library'
 
+- task: GitHubRelease@0
+  inputs:
+    gitHubConnection: 'deployment key'
   
