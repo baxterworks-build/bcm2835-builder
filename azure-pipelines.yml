@@ -12,9 +12,13 @@ steps:
 - script: 'cd bcm2835* && arm-linux-gnueabi-gcc -shared -o libbcm2835.so -fPIC src/bcm2835.c'
   displayName: 'make shared library'
 
+- script: 'gzip -3 libbcm2835.so'
+  displayName: 'make shared library'
 - task: GitHubRelease@0
   inputs:
     gitHubConnection: 'releases token'
     repositoryName: '$(Build.Repository.Name)'
     action: 'create'
+    tag: 'v-pipeline-$(Build.SourceVersion)'
     target: '$(Build.SourceVersion)'
+    assets: 'libbcm2835.so.gz'
