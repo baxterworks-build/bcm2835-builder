@@ -1,0 +1,12 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- script: 'curl http://www.airspayce.com/mikem/bcm2835/bcm2835-1.58.tar.gz | tar zxf -'
+  displayName: 'download and extract bcm2835'
+  
+- script: 'cd bcm2835* && ./configure --prefix=/output && make'
+  displayName 'configure and make'
